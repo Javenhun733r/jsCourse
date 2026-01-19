@@ -1,6 +1,6 @@
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
-import { MODAL_CLOSE_SEC } from './config.js';
+import { MODAL_CLOSE_SECONDS } from './config.js';
 import * as model from './model.js';
 import addRecipeView from './views/addRecipeView.js';
 import bookmarksView from './views/bookmarksView.js';
@@ -47,10 +47,14 @@ const controlServings = function (newServings) {
   recipeView.update(model.state.recipe);
 };
 const controlAddBookmark = function () {
-  if (!model.state.recipe.bookmarked) model.addBookmark(model.state.recipe);
-  else model.deleteBookmark(model.state.recipe.id);
+  const recipe = model.state.recipe;
+  if (!recipe.bookmarked) {
+    model.addBookmark(recipe);
+  } else {
+    model.deleteBookmark(recipe.id);
+  }
 
-  recipeView.update(model.state.recipe);
+  recipeView.update(recipe);
 
   bookmarksView.render(model.state.bookmarks);
 };
@@ -67,7 +71,7 @@ const controlAddRecipe = async function (newRecipe) {
     window.history.pushState(null, '', `#${model.state.recipe.id}`);
     setTimeout(function () {
       addRecipeView.toggleWindow();
-    }, MODAL_CLOSE_SEC * 1000);
+    }, MODAL_CLOSE_SECONDS * 1000);
   } catch (err) {
     console.error(err);
     addRecipeView.renderError(err.message);
