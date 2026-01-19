@@ -26,4 +26,4 @@ class PreviewView extends View {
 					</li>`;
   }
 }
-export default new BookmarksView();
+export default new PreviewView();
