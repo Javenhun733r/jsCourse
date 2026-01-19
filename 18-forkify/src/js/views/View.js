@@ -1,4 +1,4 @@
-import icons from 'url:../../img/icons.svg';
+import icons from '../../img/icons.svg';
 export default class View {
   _data;
   render(data, render = true) {
@@ -26,7 +26,7 @@ export default class View {
       }
       if (!newEL.isEqualNode(curEl)) {
         Array.from(newEL.attributes).forEach(attr =>
-          curEl.setAttribute(attr.name, attr.value)
+          curEl.setAttribute(attr.name, attr.value),
         );
       }
     });

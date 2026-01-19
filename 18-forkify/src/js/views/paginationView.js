@@ -1,11 +1,11 @@
-import icons from 'url:../../img/icons.svg';
+import icons from '../../img/icons.svg';
 import View from './View.js';
 class PaginationView extends View {
   _parentElement = document.querySelector('.pagination');
   _generateMarkup() {
     const currentPage = this._data.page;
     const numPages = Math.ceil(
-      this._data.results.length / this._data.resultsPerPage
+      this._data.results.length / this._data.resultsPerPage,
     );
 
     if (currentPage === 1 && numPages > 1) {
@@ -36,8 +36,8 @@ class PaginationView extends View {
             <span>${page}</span>
             <svg class="search__icon">
               <use href="${icons}#icon-arrow-${
-      type === 'next' ? 'right' : 'left'
-    }"></use>
+                type === 'next' ? 'right' : 'left'
+              }"></use>
             </svg>
           </button>`;
   }
